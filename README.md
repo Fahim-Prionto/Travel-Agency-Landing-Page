@@ -1,28 +1,24 @@
 # Tajin International
 
-A TanStack Start + Vite + React project for a travel agency landing page built with Tailwind CSS and Radix UI components.
+A plain static Vite + React landing page for a travel agency built with Tailwind CSS and TypeScript.
 
 ## Overview
 
-This project is a modern single-page application scaffolded for a travel services website. It includes:
+This project is a modern single-page application built with Vite and React. It includes:
 
-- TanStack React Router for route management
-- TanStack React Query for client-side data fetching
 - Tailwind CSS for styling
-- Radix UI components for accessible UI primitives
-- TypeScript support
+- React 19 and TypeScript support
 - Vite build and dev tooling
+- Static client-side rendering
 
 ## Project Structure
 
-- `src/routes/__root.tsx` — application root route and layout
-- `src/routes/index.tsx` — home page route component and UI
-- `src/server.ts` — SSR entrypoint for the app
-- `src/start.ts` — client startup entrypoint
+- `src/main.tsx` — application entry point
+- `src/App.tsx` — main landing page UI
 - `src/styles.css` — global styles
 - `src/assets/` — static image assets
 - `src/components/` — reusable UI components
-- `src/lib/` — utility and error reporting helpers
+- `src/lib/` — utility helpers
 
 ## Requirements
 
@@ -33,7 +29,6 @@ This project is a modern single-page application scaffolded for a travel service
 
 - `npm run dev` — start the Vite development server
 - `npm run build` — build the production bundle
-- `npm run build:dev` — build in development mode
 - `npm run preview` — preview the production build locally
 - `npm run lint` — run ESLint
 - `npm run format` — format code with Prettier
@@ -54,9 +49,9 @@ This project is a modern single-page application scaffolded for a travel service
 
 ## Notes
 
-- `@lovable.dev/vite-tanstack-config` is used for Vite configuration and already includes the required TanStack and Tailwind plugins.
-- The app uses client-side route rendering with `@tanstack/react-router` and a root error boundary.
+- This project is now a static Vite + React app with no SSR or TanStack Start routing.
+- `vite.config.ts` uses `@vitejs/plugin-react` and `@tailwindcss/vite`.
 
 ## Contact
 
-For help with this project, inspect the route definitions in `src/routes` or follow the conventions in `vite.config.ts` for additional configuration.
+For help with this project, inspect `src/App.tsx` and `vite.config.ts` for the current app setup.

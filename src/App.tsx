@@ -1,5 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   Plane,
   FileCheck2,
@@ -22,30 +21,14 @@ import {
   GraduationCap,
   Camera,
 } from "lucide-react";
-import hero from "@/assets/hero-travel.jpg";
-import imgTicket from "@/assets/service-airticket.jpg";
-import imgVisa from "@/assets/service-visa.jpg";
-import imgUmrah from "@/assets/service-umrah.jpg";
-import imgHotel from "@/assets/service-hotel.jpg";
-import imgStudent from "@/assets/service-student.jpg";
-import imgWork from "@/assets/service-work.jpg";
-import chairman from "@/assets/Chairman.jpg";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Tajin International" },
-      {
-        name: "description",
-        content:
-          "Book air tickets, visas, Hajj & Umrah packages and hotels with Bangladesh's trusted travel partner. A gateway of a dream.",
-      },
-      { property: "og:title", content: "Tajin International Air Travels & Tours" },
-      { property: "og:description", content: "A gateway of a dream — air tickets, visas, Umrah, hotels." },
-    ],
-  }),
-  component: Home,
-});
+import hero from "./assets/hero-travel.jpg";
+import imgTicket from "./assets/service-airticket.jpg";
+import imgVisa from "./assets/service-visa.jpg";
+import imgUmrah from "./assets/service-umrah.jpg";
+import imgHotel from "./assets/service-hotel.jpg";
+import imgStudent from "./assets/service-student.jpg";
+import imgWork from "./assets/service-work.jpg";
+import chairman from "./assets/Chairman.jpg";
 
 const tabs = [
   { id: "ticket", label: "Air Ticket", icon: Plane },
@@ -56,6 +39,13 @@ const tabs = [
 ] as const;
 
 type TabId = (typeof tabs)[number]["id"];
+
+type FieldProps = {
+  label: string;
+  children: ReactNode;
+  className?: string;
+  tone?: "light" | "dark";
+};
 
 function useReveal() {
   useEffect(() => {
@@ -112,7 +102,7 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   );
 }
 
-function Home() {
+function App() {
   const [tab, setTab] = useState<TabId>("ticket");
   const [navOpen, setNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -126,7 +116,6 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* NAV */}
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled ? "glass shadow-card py-3" : "py-5"
@@ -146,13 +135,13 @@ function Home() {
           </a>
 
           <nav className="hidden items-center gap-8 md:flex">
-            {["Home", "About", "Services", "Hajj", "Gallery", "Contact"].map((l) => (
+            {['Home', 'About', 'Services', 'Hajj', 'Gallery', 'Contact'].map((label) => (
               <a
-                key={l}
-                href={`#${l.toLowerCase()}`}
+                key={label}
+                href={`#${label.toLowerCase()}`}
                 className="group relative text-sm font-medium text-foreground/80 transition hover:text-foreground"
               >
-                {l}
+                {label}
                 <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-[image:var(--gradient-sunset)] transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
@@ -175,21 +164,20 @@ function Home() {
         </div>
         {navOpen && (
           <div className="mx-5 mt-3 rounded-2xl glass p-4 md:hidden animate-fade-in">
-            {["Home", "About", "Services", "Hajj", "Gallery", "Contact"].map((l) => (
+            {['Home', 'About', 'Services', 'Hajj', 'Gallery', 'Contact'].map((label) => (
               <a
-                key={l}
-                href={`#${l.toLowerCase()}`}
+                key={label}
+                href={`#${label.toLowerCase()}`}
                 onClick={() => setNavOpen(false)}
                 className="block rounded-lg px-3 py-2 text-sm font-medium hover:bg-secondary"
               >
-                {l}
+                {label}
               </a>
             ))}
           </div>
         )}
       </header>
 
-      {/* HERO */}
       <section id="top" className="relative isolate min-h-[100vh] pt-28">
         <div className="absolute inset-0 -z-10">
           <img
@@ -201,7 +189,6 @@ function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
         </div>
 
-        {/* floating shapes */}
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute -left-20 top-32 h-72 w-72 rounded-full bg-coral/30 blur-3xl animate-float" />
           <div className="absolute right-0 top-20 h-96 w-96 rounded-full bg-ocean/40 blur-3xl animate-float-slow" />
@@ -227,11 +214,9 @@ function Home() {
             className="mx-auto mt-5 max-w-2xl text-base text-white/85 md:text-lg animate-fade-up"
             style={{ animationDelay: "0.25s" }}
           >
-            Air tickets, visas, Umrah & luxury stays — crafted by Bangladesh's most
-            dedicated travel team for over two decades.
+            Air tickets, visas, Umrah & luxury stays — crafted by Bangladesh's most dedicated travel team for over two decades.
           </p>
 
-          {/* Booking widget */}
           <div
             className="mx-auto mt-12 max-w-5xl rounded-3xl glass p-2 shadow-elegant animate-scale-in text-foreground"
             style={{ animationDelay: "0.4s" }}
@@ -400,7 +385,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Marquee */}
       <div className="border-y border-border bg-secondary/40 py-4 overflow-hidden">
         <div className="flex w-max gap-12 animate-marquee whitespace-nowrap text-sm font-semibold uppercase tracking-[0.3em] text-muted-foreground">
           {Array.from({ length: 2 }).map((_, i) => (
@@ -425,7 +409,6 @@ function Home() {
         </div>
       </div>
 
-      {/* SERVICES */}
       <section id="services" className="relative py-24">
         <div className="mx-auto max-w-7xl px-5">
           <div className="mx-auto max-w-2xl text-center" data-reveal>
@@ -481,7 +464,6 @@ function Home() {
         </div>
       </section>
 
-      {/* STATS */}
       <section className="relative overflow-hidden py-20">
         <div className="absolute inset-0 bg-[image:var(--gradient-hero)] [background-size:200%_200%] animate-gradient" />
         <div className="absolute inset-0 bg-black/30" />
@@ -510,7 +492,6 @@ function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-5">
           <div className="flex flex-wrap items-end justify-between gap-6" data-reveal>
@@ -578,7 +559,6 @@ function Home() {
         </div>
       </section>
 
-      {/* MD MESSAGE */}
       <section id="about" className="relative overflow-hidden py-24">
         <div className="absolute -right-40 top-20 h-96 w-96 rounded-full bg-coral/15 blur-3xl" />
         <div className="absolute -left-40 bottom-0 h-96 w-96 rounded-full bg-ocean/20 blur-3xl" />
@@ -630,7 +610,6 @@ function Home() {
         </div>
       </section>
 
-      {/* CTA */}
       <section id="contact" className="px-5 pb-24">
         <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] p-10 md:p-16">
           <div className="absolute inset-0 bg-[image:var(--gradient-sunset)] [background-size:200%_200%] animate-gradient" />
@@ -666,7 +645,7 @@ function Home() {
               </div>
             </div>
             <form
-               data-reveal
+              data-reveal
               className="rounded-3xl glass-dark p-6 md:p-8 space-y-4"
             >
               <Field label="Name" tone="dark">
@@ -693,7 +672,6 @@ function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="border-t border-border bg-secondary/30">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-4">
           <div>
@@ -721,7 +699,11 @@ function Home() {
           {[
             { t: "Explore", l: ["Air Ticket", "Hotel Booking", "Hajj & Umrah", "About Us", "Contact"] },
             { t: "Support", l: ["Refund Policy", "Terms", "Privacy", "FAQ"] },
-            { t: "Contact", l: ["+8801925556099", "tajinir2025@gmail.com", "56, Mohakhali Plaza, (5th Follor), Shaheed Tajuddin Ahmed Sharani, Rasulbag, Mohakhali, Dhaka-1212"] },
+            { t: "Contact", l: [
+                "+8801925556099",
+                "tajinir2025@gmail.com",
+                "56, Mohakhali Plaza, (5th Follor), Shaheed Tajuddin Ahmed Sharani, Rasulbag, Mohakhali, Dhaka-1212",
+              ] },
           ].map((c) => (
             <div key={c.t}>
               <div className="font-semibold">{c.t}</div>
@@ -778,17 +760,7 @@ function Home() {
   );
 }
 
-function Field({
-  label,
-  children,
-  className = "",
-  tone = "light",
-}: {
-  label: string;
-  children: React.ReactNode;
-  className?: string;
-  tone?: "light" | "dark";
-}) {
+function Field({ label, children, className = "", tone = "light" }: FieldProps) {
   return (
     <label className={`block text-left ${className}`}>
       <span
@@ -818,3 +790,5 @@ function SubmitButton({ className = "" }: { className?: string }) {
     </div>
   );
 }
+
+export default App;
