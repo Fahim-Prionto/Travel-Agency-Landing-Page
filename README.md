@@ -1,37 +1,33 @@
 # Tajin International
 
-A plain static Vite + React landing page for a travel agency built with Tailwind CSS and TypeScript.
+A modern Vite + React + TypeScript project for the Tajin International experience, styled with Tailwind CSS and built with reusable UI components.
 
 ## Overview
 
-This project is a modern single-page application built with Vite and React. It includes:
+This application uses a fast Vite development setup with React 19 and a component-driven UI layer. It is designed for a polished landing-page experience and includes a collection of accessible UI primitives powered by Radix UI and shadcn-style components.
 
-- Tailwind CSS for styling
-- React 19 and TypeScript support
-- Vite build and dev tooling
-- Static client-side rendering
+## Tech Stack
+
+- React 19
+- TypeScript
+- Vite 8
+- Tailwind CSS 4
+- Radix UI primitives
+- ESLint + Prettier
 
 ## Project Structure
 
-- `src/main.tsx` — application entry point
-- `src/App.tsx` — main landing page UI
-- `src/styles.css` — global styles
-- `src/assets/` — static image assets
-- `src/components/` — reusable UI components
-- `src/lib/` — utility helpers
+- src/main.tsx — application entry point
+- src/App.tsx — main app layout and page content
+- src/styles.css — global styling and Tailwind setup
+- src/components/ — reusable UI components
+- src/lib/ — helper utilities and app-level logic
+- src/assets/ — static images and assets
 
 ## Requirements
 
-- Node.js 20+ recommended
+- Node.js 20 or newer
 - npm
-
-## Scripts
-
-- `npm run dev` — start the Vite development server
-- `npm run build` — build the production bundle
-- `npm run preview` — preview the production build locally
-- `npm run lint` — run ESLint
-- `npm run format` — format code with Prettier
 
 ## Getting Started
 
@@ -45,13 +41,18 @@ This project is a modern single-page application built with Vite and React. It i
    npm run dev
    ```
 
-3. Open the app in your browser at `http://localhost:5173`.
+3. Open the app in your browser at http://localhost:5173
+
+## Available Scripts
+
+- npm run dev — start the Vite development server
+- npm run build — create a production build
+- npm run preview — preview the production build locally
+- npm run lint — run ESLint
+- npm run format — format the codebase with Prettier
 
 ## Notes
 
-- This project is now a static Vite + React app with no SSR or TanStack Start routing.
-- `vite.config.ts` uses `@vitejs/plugin-react` and `@tailwindcss/vite`.
-
-## Contact
-
-For help with this project, inspect `src/App.tsx` and `vite.config.ts` for the current app setup.
+- The project uses Vite with React plugin support and Tailwind integration via Vite.
+- The UI layer includes a wide set of reusable components under src/components/ui.
+- This setup is suitable for rapid front-end development and future expansion.
